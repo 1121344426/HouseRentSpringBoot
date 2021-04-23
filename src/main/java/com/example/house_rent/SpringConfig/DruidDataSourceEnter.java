@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.Filter;
 import javax.sql.DataSource;
@@ -32,7 +33,7 @@ public class DruidDataSourceEnter {
     }
     //配置druid的监控器
     //配置一个管理后台的servlet
-    @Bean
+    /*@Bean
     public ServletRegistrationBean statViewServlet(){
         ServletRegistrationBean<StatViewServlet> servlet = new ServletRegistrationBean<>(new StatViewServlet(), "/druid/*");
         Map<String,String> map = new HashMap<>();
@@ -53,5 +54,12 @@ public class DruidDataSourceEnter {
         filter.setInitParameters(map);
         filter.setUrlPatterns(Arrays.asList("/*"));
         return filter;
+    }*/
+    @Bean
+    public CommonsMultipartResolver multipartResolver(){
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        commonsMultipartResolver.setMaxUploadSize(1024000);
+        commonsMultipartResolver.setDefaultEncoding("UTF-8");
+        return commonsMultipartResolver;
     }
 }
