@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+
+        <!--<setting name="logImpl" value="STDOUT_LOGGING"/>-->
+
+    </settings>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="reasonable"  value="true"/>
+        </plugin>
+    </plugins>
+
+
+
+    <!-- 
+		5、databaseIdProvider:支持多数据库厂商
+			type=“DB_VENDOR”:VendorDatabaseIdProvider
+				作用是得到数据库厂商的标识(驱动getDatabaseProductName().mybatis)
+			MySQL,Oracle,SQL Server,Xxx
+			
+			进行如下配置就可以在sql映射文件的每一个sql语句的属性指定 
+			databaseId为以下数据库厂商的value值
+			只要使用不同类型的数据库时,只要直接在环境配置的environments标签的defult设置成其他数据的环境,前提已经配置
+			(这个文件已经配置)
+	 -->
+    <databaseIdProvider type="DB_VENDOR">
+        <!-- 为不同的数据库厂商起别名 -->
+        <property name="MySQL" value="mysql"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="SQL Server" value="sqlsever"/>
+    </databaseIdProvider>
+
+
+</configuration>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.house_rent.SQLMapping.HouseMapping.HouseOperate">
+<!--List<Employee> getAllEmps();-->
+    <select id="findHouses" resultType="com.example.house_rent.Bean.House">
+        select * from house where `status` = '0'
+    </select>
+
+    <select id="findHousesByPriceAsc" resultType="com.example.house_rent.Bean.House">
+        select * from house where `status` = '0' order by price asc
+    </select>
+
+    <select id="findHousesByPriceDesc" resultType="com.example.house_rent.Bean.House">
+        select * from house  where `status` = '0'  order by price desc
+    </select>
+
+    <select id="findHousesByDateAsc" resultType="com.example.house_rent.Bean.House">
+        select * from house where `status` = '0'  order by publishdate desc
+    </select>
+
+    <insert id="publishHouse">
+        insert into house (owner,renter,style,price,descr,publishdate,village,city,area,status,path,square,direction,storey)
+        values(#{owner},#{renter},#{style},#{price},#{descr},#{publishdate},#{village},#{city},#{area},#{status},#{path},#{square},#{direction},#{storey})
+    </insert>
+
+    <select id="findHouseById" resultType="com.example.house_rent.Bean.House">
+        select * from house where id = #{id}
+    </select>
+
+    <select id="findHousesByOwner" resultType="com.example.house_rent.Bean.House">
+        select * from house where owner = #{id}
+    </select>
+
+    <select id="findHousesByRenter" resultType="com.example.house_rent.Bean.House">
+        select * from house where renter = #{id}
+    </select>
+
+
+
+    <select id="findHousesByAllConditions" resultType="com.example.house_rent.Bean.House">
+        select * from house
+        <trim prefix="where" suffixOverrides="and">
+            <if test="param1 != null">
+                style = #{param1} and
+            </if>
+            <if test="param2 != null">
+                area = #{param2} and
+            </if>
+            <if test="param3 != null">
+                price between #{param3} and #{param4} and
+            </if>
+            <if test="param5 != null">
+                square between #{param5} and #{param6} and
+            </if>
+                status = '0'
+        </trim>
+            <if test="param7 != null">
+                order by ${param7} ${param8}
+            </if>
+
+    </select>
+
+    <select id="findCountOfHouse" resultType="java.lang.Integer">
+        select count(1) from house
+        <trim prefix="where" suffixOverrides="and">
+            <if test="param1 != null">
+                style = #{param1} and
+            </if>
+            <if test="param2 != null">
+                area = #{param2} and
+            </if>
+            <if test="param3 != null">
+                price between #{param3} and #{param4} and
+            </if>
+            <if test="param5 != null">
+                square between #{param5} and #{param6} and
+            </if>
+                status = '0'
+        </trim>
+        <if test="param7 != null">
+            order by ${param7} ${param8}
+        </if>
+
+    </select>
+
+
+    <select id="findHousesByList" resultType="com.example.house_rent.Bean.House">
+        select  * from house
+        <if test="list!=null">
+            <foreach collection="list" item="id" open="where id in (" close=") and status = '0'" separator=",">
+                #{id}
+            </foreach>
+        </if>
+        <if test="list==null">
+            where id = -1;
+        </if>
+
+    </select>
+
+    <delete id="delHouse">
+        delete from house where id = #{id}
+    </delete>
+
+    <update id="updateHouseToRenter">
+        update house set `status` = '1',renter = #{param2} where id = #{param1}
+    </update>
+</mapper>

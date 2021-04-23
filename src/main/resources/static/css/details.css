@@ -1,0 +1,95 @@
+.select span a{
+    color: white!important;
+    font-size: 16px;
+    font-weight: 700;
+}
+.area li{
+    display: inline;
+    margin-left: 20px;
+}
+.pos{
+    font-weight: 600;
+    width: 100px;
+    padding: 14px 0px 9px 0px;
+    text-align: left;
+}
+.TabStyle tbody tr td{
+    padding: 0 0 0 0;
+    border-style: none;
+    border-bottom: 1px solid #dfd5d5;
+    height: 50px;
+    font-size: 5px;
+}
+.TabStyle{
+    width: 0;
+    border-collapse: collapse;
+}
+.ShowHouses li{
+    display: inline;
+    padding: 12px;
+}
+.defaultOperatePage ul li{
+    display: inline;
+    margin-left: 5px;
+}
+.priceDescOperatePage ul li{
+    display: inline;
+    margin-left: 5px;
+}
+.priceAscOperatePage ul li{
+    display: inline;
+    margin-left: 5px;
+}
+.dateAscOperatePage ul li{
+    display: inline;
+    margin-left: 5px;
+}
+.add_title{
+    overflow: hidden;
+    border-bottom: #e7e7e7 solid 1px;
+    margin: 0 40px;
+    padding: 20px 0;
+}
+.add_title ul{
+    float: right;
+    margin-top: 6px;
+}
+.add_title ul li{
+    display: inline;
+}
+.add_title ul li button{
+    border: none;
+}
+.add_title h2{
+    float: left;
+    font-size: 20px ;
+}
+.add_body ul{
+    float:left;
+    width: 50%;
+}
+.add_body ul li {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+.add_body ul li button{
+    display: inline-block;
+    min-width: 60px;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    color: #484848;
+    border: none;
+}
+footer {
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 60px;
+}
+.footerDes{
+    border-top: 2px solid #e4e6f0;
+    margin-top: 350px;
+}
